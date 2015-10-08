@@ -1,0 +1,10 @@
+[submodule "oomox"]
+	path = oomox
+	url = https://github.com/actionless/oomox.git
+[submodule "urnn"]
+	path = urnn
+	url = https://github.com/nixers-projects/urnn.git
+[submodule "acyl"]
+	path = acyl
+	url = https://github.com/neeasade/acyl.git
+
