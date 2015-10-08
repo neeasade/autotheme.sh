@@ -7,16 +7,16 @@ git submodule init
 git submodule update
 
 # compile gtkrcreload, colort
-cd gtkrc-reload
+cd gtkrc-reload-src
 make
 cd ..
 
-cd colort
+cd colort-src
 make
 cd ..
 
 # copy acyl dir
-[[ -d ~/.icons ]] && mkdir ~/.icons
-cp -r acyl ~/icons/acyl
+[[ ! -d ~/.icons ]] && mkdir ~/.icons
+cp -r acyl ~/.icons/acyl
 
 echo "All done!"

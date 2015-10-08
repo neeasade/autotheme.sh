@@ -8,7 +8,7 @@
 cd $( dirname $0 )
 
 # Use urnn to get colors in xres format, translate to termite and create config.
-./urnn.sh colors "$1" > colors.xresources
+./urnn/urnn.sh colors "$1" > colors.xresources
 
 # pull the colors
 # generate gtk from oomoox template
@@ -29,14 +29,21 @@ sed -i "s/selreplace/${sel}/g" $oomoxconf
 ./oomox/change_color.sh auto
 
 # Set the icon color:
-~/.icons/acyl/scalable/scripts/icon.sh "$foreground"
+~/.icons/acyl/scalable/scripts/icon.sh "#$foreground"
 
 # Set gtk theme and icon theme in ~/.gtkrc-2.0, whilst keeping current settings:
+# bash doesn't allow variables with a - in their names, so we are going to hack around that.
 function addgtkval() {
-	echo "$1=\"`eval echo \$$1`\"" >> ~/.gtkrc-2.0
+	value="$(eval echo \$`echo $1 | sed 's/-/_/g'`)"
+	echo "$1=\"$value\"" >> ~/.gtkrc-2.0
 }
-. ~/.gtkrc-2.0
+
+sed -i 's/-/_/g' ~/.gtkrc-2.0
+. ~/.gtkrc-2.0 2>&1 > /dev/null
 rm ~/.gtkrc-2.0
+
+gtk_theme_name=oomox-auto
+gtk_icon_theme_name=acyl
 
 gtkvars="gtk-theme-name gtk-icon-theme-name gtk-font-name gtk-cursor-theme-name gtk-cursor-theme-size gtk-toolbar-style gtk-toolbar-icon-size gtk-button-images gtk-menu-images gtk-enable-event-sounds gtk-enable-input-feedback-sounds gtk-xft-antialias gtk-xft-hinting gtk-xft-hintstyle gtk-xft-rgba"
 
