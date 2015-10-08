@@ -1,10 +1,9 @@
 [submodule "oomox"]
 	path = oomox
-	url = https://github.com/actionless/oomox.git
+	url = https://github.com/actionless/oomox
 [submodule "urnn"]
 	path = urnn
-	url = https://github.com/nixers-projects/urnn.git
+	url = https://github.com/nixers-projects/urnn
 [submodule "acyl"]
 	path = acyl
-	url = https://github.com/neeasade/acyl.git
-
+	url = https://github.com/neeasade/acyl
