@@ -30,6 +30,7 @@ This script does the following:
 - replace the gtk theme and icon theme values in your ~/.gtkrc-2.0 file
 - Calls the gtkrc-reload program to live-reload your gtk programs
 - Puts the generated colors in ./colors.xresources and calls `xrdb merge` on them for your terminal colorscheme
+- If you have feh, the image will be set as your background.
 
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.

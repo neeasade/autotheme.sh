@@ -54,3 +54,6 @@ done
 ./gtkrc-reload
 
 xrdb merge ./colors.xresources
+
+# silent failure if they don't have feh.
+feh --bg-fill "$1" > /dev/null
