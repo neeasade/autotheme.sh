@@ -6,8 +6,12 @@ cd $( dirname $0 )
 git submodule init
 git submodule update
 
-# compile gtkrcreload
+# compile gtkrcreload, colort
 cd gtkrc-reload
+make
+cd ..
+
+cd colort
 make
 cd ..
 

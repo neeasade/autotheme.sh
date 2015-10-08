@@ -2,12 +2,13 @@
 
 https://u.teknik.io/xFxa0g.webm
 
-This repo is a mash up of the following projects:
+This repo is a mash up of the following projects/programs:
 
 - [oomox](https://github.com/actionless/oomox)
 - [ACYL Icons](http://gnome-look.org/content/show.php/?content=102435)(Personal fork with an added script)
 - [URNN](https://github.com/nixers-projects/urnn)
 - gtkrc-reload
+- [colort](https://gist.github.com/neeasade/a835a7946b3718e71f24)
 
 ### How do I use this?
 
@@ -26,9 +27,9 @@ This script does the following:
 - Generate colors from an image with urnn
 - Make a gtk script from said colors with oomox(named 'oomox-auto')
 - Call the acyl coloring bash script with the previously generated foreground color
-- Replace your ~/.gtkrk-2.0 file (with oomox gtk, acyl icons, monospace font)(backs up existing gtkrc-2.0 > ~/.gtkrc-2.0.backup)
+- replace the gtk theme and icon theme values in your ~/.gtkrc-2.0 file
 - Calls the gtkrc-reload program to live-reload your gtk programs
-- Puts the generates colors in ./pulled.colors and calls `xrdb merge` on them for your terminal
+- Puts the generates colors in ./colors.xresources and calls `xrdb merge` on them for your terminal colorscheme
 
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.
