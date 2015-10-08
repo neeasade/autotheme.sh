@@ -12,6 +12,8 @@ This repo is a mash up of the following projects/programs:
 
 ### How do I use this?
 
+First you will need to install [libfann](https://github.com/libfann/fann), for URNNs color generation.
+
 After cloning:
 ```
 ./setup.sh
@@ -33,3 +35,4 @@ This script does the following:
 
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.
+- The panel in the webm is from my [dotfiles](github.com/neeasade/dotfiles)

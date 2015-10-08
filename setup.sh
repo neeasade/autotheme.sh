@@ -6,6 +6,11 @@ cd $( dirname $0 )
 git submodule init
 git submodule update
 
+# setup urnn
+cd urnn
+./setup.sh
+cd ..
+
 # compile gtkrcreload, colort
 cd gtkrc-reload-src
 make
