@@ -31,7 +31,7 @@ This script does the following:
 - Call the acyl coloring bash script with the previously generated foreground color
 - replace the gtk theme and icon theme values in your ~/.gtkrc-2.0 file
 - Calls the gtkrc-reload program to live-reload your gtk programs
-- Puts the generates colors in ./colors.xresources and calls `xrdb merge` on them for your terminal colorscheme
+- Puts the generated colors in ./colors.xresources and calls `xrdb merge` on them for your terminal colorscheme
 
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.
