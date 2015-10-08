@@ -23,8 +23,6 @@ After cloning:
 `setup.sh` will compile the small gtkrc reload program and pull down the git submodules. It will also copy the acyl icons folder to `~/.icons/acyl`.
 
 ### autotheme.sh
-This script will generate colors from an image using urnn, and then use those colors to make a gtk theme with oomox (named 'oomox-auto').
-
 This script does the following:
 - Generate colors from an image with urnn
 - Make a gtk script from said colors with oomox(named 'oomox-auto')
