@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+# setup things for autotheme.sh
 
-cd $( dirname $0 )
+cd $( dirname $0 )/auto
 
 # git modules
 git submodule init

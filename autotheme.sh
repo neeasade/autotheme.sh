@@ -4,10 +4,9 @@
 # goal: be made of less cancer
 
 # relevant to this dir:
+cd $( dirname $0 )/auto
 
-cd $( dirname $0 )
-
-# Use urnn to get colors in xres format, translate to termite and create config.
+# Use urnn to get colors in xres format
 ./urnn/urnn.sh colors "$1" > colors.xresources
 
 # pull the colors
@@ -15,7 +14,7 @@ cd $( dirname $0 )
 oomoxconf="./oomox/colors/auto.sh"
 cp oomox_template $oomoxconf
 
-# set the colors as variables:
+# set the colors as variables, and evaluate them.
 eval $(cat colors.xresources | sed 's/*//' | sed 's/:/=/' | sed 's/ #//')
 
 txtbg="$(./colort 1 "$background")"
@@ -38,8 +37,10 @@ function addgtkval() {
 	echo "$1=\"$value\"" >> ~/.gtkrc-2.0
 }
 
+#
 sed -i 's/-/_/g' ~/.gtkrc-2.0
-. ~/.gtkrc-2.0 2>&1 > /dev/null
+
+. ~/.gtkrc-2.0 2>&1
 rm ~/.gtkrc-2.0
 
 gtk_theme_name=oomox-auto
@@ -51,8 +52,10 @@ for i in $gtkvars; do
 	addgtkval $i
 done
 
+# reload gtk theme
 ./gtkrc-reload
 
+# load xresources
 xrdb merge ./colors.xresources
 
 # silent failure if they don't have feh.

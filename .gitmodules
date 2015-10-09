@@ -1,9 +1,9 @@
 [submodule "oomox"]
-	path = oomox
+	path = auto/oomox
 	url = https://github.com/actionless/oomox
 [submodule "urnn"]
-	path = urnn
+	path = auto/urnn
 	url = https://github.com/nixers-projects/urnn
 [submodule "acyl"]
-	path = acyl
+	path = auto/acyl
 	url = https://github.com/neeasade/acyl
