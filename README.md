@@ -12,7 +12,9 @@ This repo is a mash up of the following projects/programs:
 
 ### How do I use this?
 
-First you will need to install [libfann](https://github.com/libfann/fann), for URNNs color generation.
+You will need the following dependencies: libpng, gtk2, [libfann](https://github.com/libfann/fann), and optionally, feh.
+
+This has been primarily used on Arch and there have been issues with other distros due to older libpng versions.
 
 After cloning:
 ```
@@ -35,3 +37,4 @@ This script does the following:
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.
 - The panel in the webm is from my [dotfiles](github.com/neeasade/dotfiles)
+- Thanks to Hexarei for playing guinea pig.
