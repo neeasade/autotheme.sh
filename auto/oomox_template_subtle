@@ -1,7 +1,7 @@
 NAME="auto"
 BG=bgreplace
 FG=fgreplace
-TXT_BG=txtreplace
+TXT_BG=$BG
 TXT_FG=$FG
 MENU_BG=$BG
 MENU_FG=$FG

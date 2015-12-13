@@ -3,6 +3,9 @@
 # autotheme.sh
 # goal: be made of less cancer
 
+# if this script has 2+ arguments given, it will use a 'subtle' gtk style,
+# as opposed to inverted active selection colors.
+
 # relevant to this dir:
 cd $( dirname $0 )/auto
 
@@ -12,23 +15,33 @@ cd $( dirname $0 )/auto
 # pull the colors
 # generate gtk from oomoox template
 oomoxconf="./oomox/colors/auto.sh"
-cp oomox_template $oomoxconf
+
+if [ -z "$2" ]; then
+	cp oomox_template_invert $oomoxconf
+else
+	cp oomox_template_subtle $oomoxconf
+fi
 
 # set the colors as variables, and evaluate them.
 eval $(cat colors.xresources | sed 's/*//' | sed 's/:/=/' | sed 's/ #//')
 
-txtbg="$(./colort 1 "$background")"
-sel="$(./colort 2 "$background")"
-sed -i "s/bgreplace/${background}/g" $oomoxconf
-sed -i "s/fgreplace/${foreground}/g" $oomoxconf
-sed -i "s/txtreplace/${txtbg}/g" $oomoxconf
-sed -i "s/selreplace/${sel}/g" $oomoxconf
+sed -i "s/bgreplace/${background}/g;s/fgreplace/${foreground}/g" $oomoxconf
+
+if [ ! -z "$2" ]; then
+	sel="$(./colort 1 "$background")"
+	sed -i "s/selreplace/${sel}/g" $oomoxconf
+fi
 
 # make the theme:
 ./oomox/change_color.sh auto
 
 # Set the icon color:
-~/.icons/acyl/scalable/scripts/icon.sh "#$foreground"
+if [ -z "$2" ]; then
+	# lower the icon color from the foreground so that you can see icons on selected items.
+	~/.icons/acyl/scalable/scripts/icon.sh "#$(./colort -3 $foreground)"
+else
+	~/.icons/acyl/scalable/scripts/icon.sh "#$foreground"
+fi
 
 # Set gtk theme and icon theme in ~/.gtkrc-2.0, whilst keeping current settings:
 # bash doesn't allow variables with a - in their names, so we are going to hack around that.
@@ -37,7 +50,6 @@ function addgtkval() {
 	echo "$1=\"$value\"" >> ~/.gtkrc-2.0
 }
 
-#
 sed -i 's/-/_/g' ~/.gtkrc-2.0
 
 . ~/.gtkrc-2.0 2>&1
