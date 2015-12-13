@@ -34,6 +34,18 @@ This script does the following:
 - Puts the generated colors in ./colors.xresources and calls `xrdb merge` on them for your terminal colorscheme
 - If you have feh, the image will be set as your background.
 
+### subtle vs invert gtk styles.
+
+By default this script will use a 'subtle' gtk style, but if you include any argument after your image file, an inverted gtk style will be produced. to make it clear what I mean by that:
+
+subtle | invert
+-------|--------
+![subtle](https://u.teknik.io/3dclwG.png) | ![invert](https://u.teknik.io/bYAvQA.png)
+
+### todo
+- Make this less ghetto /arguments
+- 'Manual' mode that takes in colors and spits out simple gtk, either inverted or subtle
+
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.
 - The panel in the webm is from my [dotfiles](github.com/neeasade/dotfiles)
