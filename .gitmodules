@@ -1,9 +1,0 @@
-[submodule "auto/acyl"]
-	path = auto/acyl
-	url = https://github.com/neeasade/acyl
-[submodule "auto/oomox"]
-	path = auto/oomox
-	url = https://github.com/actionless/oomox
-[submodule "auto/urnn"]
-	path = auto/urnn
-	url = https://github.com/nixers-projects/urnn
