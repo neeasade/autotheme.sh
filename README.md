@@ -8,7 +8,7 @@ This repo is a mash up of the following projects/programs:
 - [ACYL Icons](http://gnome-look.org/content/show.php/?content=102435)(Personal fork with an added script)
 - [URNN](https://github.com/nixers-projects/urnn)
 - gtkrc-reload
-- [colort](https://gist.github.com/neeasade/a835a7946b3718e71f24)
+- [colort](https://github.com/26c8/colort)
 
 ### How do I use this?
 
