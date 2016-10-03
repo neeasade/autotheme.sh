@@ -31,6 +31,7 @@ else
 fi
 
 oomoxconf="$(mktemp)"
+
 # make the oomox template
 cat << HEREDOC > $oomoxconf
 NAME="{{THEME_NAME}}"

@@ -5,27 +5,23 @@ https://u.teknik.io/xFxa0g.webm
 This repo is a mash up of the following projects/programs:
 
 - [oomox](https://github.com/actionless/oomox)
-- [ACYL Icons](http://gnome-look.org/content/show.php/?content=102435)(Personal fork with an added script)
+- [ACYL Icons fork](https://github.com/neeasade/acyl)
 - [URNN](https://github.com/nixers-projects/urnn)
 - gtkrc-reload
-- [colort](https://github.com/26c8/colort)
+- [colort](https://github.com/neeasade/colort)
 
 ### How do I use this?
 
-You will need the following dependencies: libpng, gtk2, [libfann](https://github.com/libfann/fann), and optionally, feh.
+Install the above listed programs (most available as AUR packages), and then:
 
-This has been primarily used on Arch and there have been issues with other distros due to older libpng versions.
-
-After cloning:
 ```
-./setup.sh
 ./autotheme.sh "/path/to/image.file"
 ```
 
-`setup.sh` will compile the small gtkrc reload program and pull down the git submodules. It will also copy the acyl icons folder to `~/.icons/acyl`.
-
 ### autotheme.sh
+
 This script does the following:
+
 - Generate colors from an image with urnn
 - Make a gtk script from said colors with oomox(named 'oomox-auto')
 - Call the acyl coloring bash script with the previously generated foreground color
@@ -43,10 +39,13 @@ subtle | invert
 ![subtle](https://u.teknik.io/3dclwG.png) | ![invert](https://u.teknik.io/bYAvQA.png)
 
 ### todo
-- Make this less ghetto /arguments
-- 'Manual' mode that takes in colors and spits out simple gtk, either inverted or subtle
+- arguments
+- 'Manual' mode that takes in colors, no image needed.
+- new webm
+- update oomox content/format 
+- package urnn, acyl in aur.
 
 ### misc
 - The terminal in the webm is termite, which can autoreload it's settings.
-- The panel in the webm is from my [dotfiles](github.com/neeasade/dotfiles)
+- The panel in the webm is from my [dotfiles](https://github.com/neeasade/dotfiles)
 - Thanks to Hexarei for playing guinea pig.
