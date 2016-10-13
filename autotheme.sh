@@ -7,6 +7,38 @@
 # if this script has 2+ arguments given, it will use an 'inverted' gtk style,
 # with inverted active selection colors.
 
+# make sure all the commands are available before running the script
+if ! type "colort" 2> /dev/null; then
+    echo "colort not installed"
+    echo "Get it from: https://github.com/neeasade/colort"
+    exit
+fi
+if ! type "oomox-cli" 2> /dev/null; then
+    echo "oomox not installed"
+    echo "Get it from: https://github.com/actionless/oomox"
+    exit
+fi
+if ! type "acyl-cli" 2> /dev/null; then
+    echo "ACYL icons not installed"
+    echo "Get them from: https://github.com/neeasade/acyl"
+    exit
+fi
+if ! type "gtkrc-reload" 2> /dev/null; then
+    echo "gtkrc-reload not installed"
+    echo "Get it from your package manger"
+    exit
+fi
+if ! type "feh" 2> /dev/null; then
+    echo "feh not installed"
+    echo "Get it from your package manger"
+    exit
+fi
+if ! type "urnn" 2> /dev/null; then
+    echo "urnn not installed"
+    echo "Get it from: https://github.com/nixers-projects/urnn"
+    exit
+fi
+
 # relevant to this dir:
 cd $(dirname $0)
 
