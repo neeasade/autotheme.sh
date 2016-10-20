@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # neeasade
 # autotheme.sh - generate xresources and gtk from a theme
 # dependencies(available as AUR git packages): oomox colort urnn gtkrc-reload acyl
@@ -8,39 +8,24 @@
 # with inverted active selection colors.
 
 # make sure all the commands are available before running the script
-if ! type "colort" 2> /dev/null; then
-    echo "colort not installed"
-    echo "Get it from: https://github.com/neeasade/colort"
-    exit
-fi
-if ! type "oomox-cli" 2> /dev/null; then
-    echo "oomox not installed"
-    echo "Get it from: https://github.com/actionless/oomox"
-    exit
-fi
-if ! type "acyl-cli" 2> /dev/null; then
-    echo "ACYL icons not installed"
-    echo "Get them from: https://github.com/neeasade/acyl"
-    exit
-fi
-if ! type "gtkrc-reload" 2> /dev/null; then
-    echo "gtkrc-reload not installed"
-    echo "Get it from your package manger"
-    exit
-fi
-if ! type "feh" 2> /dev/null; then
-    echo "feh not installed"
-    echo "Get it from your package manger"
-    exit
-fi
-if ! type "urnn" 2> /dev/null; then
-    echo "urnn not installed"
-    echo "Get it from: https://github.com/nixers-projects/urnn"
-    exit
-fi
+programs="colort oomox-cli acyl-cli gtkrc-reload feh urnn"
+for program in $programs; do
+	if ! command -v "$program" 2> /dev/null; then
+		echo "$program is not installed"
+		echo "Get colort from https://github.com/neeasade/colort"
+		echo "Get oomox-cli from https://github.com/actionless/oomox"
+		echo "Get ACYL icons from https://github.com/neeasade/acyl"
+		echo "Get urnn from https://github.com/nixers-projects/urnn"
+		echo "Get gtkrc-reload and feh from your package manager"
+		exit 1
+	fi
+done
 
 # relevant to this dir:
-cd "$(dirname $0)"
+cd "$(dirname "$0")" || {
+	echo "Failed to change directory"
+	exit 1
+}
 
 xres=$(mktemp)
 echo "Dumping xresources to: $xres"
@@ -49,7 +34,7 @@ echo "Dumping xresources to: $xres"
 urnn colors "$1" > "$xres"
 
 # eval the colors as variables
-eval $(sed 's/*//;s/:/=/;s/ #//;s/ //g' <<< "$xres")
+eval "$(printf '%s' "$xres" | sed 's/*//;s/:/=/;s/ #//;s/ //g')"
 
 # subtle or invert?
 if [ "$#" -gt 1 ]; then
@@ -91,12 +76,12 @@ sed -i 's/-/_/g' ~/.gtkrc-2.0
 rm ~/.gtkrc-2.0
 
 # set gtk and icon themes
-gtk_theme_name=oomox-$(basename $oomoxconf)
+gtk_theme_name="oomox-$(basename $oomoxconf)"
 gtk_icon_theme_name=acyl
-gtkvars=(theme-name icon-theme-name font-name cursor-theme-name cursor-theme-size toolbar-style toolbar-icon-size button-images menu-images enable-event-sounds enable-input-feedback-sounds xft-antialias xft-hinting xft-hintstyle xft-rgba)
+gtkvars="theme-name icon-theme-name font-name cursor-theme-name cursor-theme-size toolbar-style toolbar-icon-size button-images menu-images enable-event-sounds enable-input-feedback-sounds xft-antialias xft-hinting xft-hintstyle xft-rgba"
 
 # write gtkrc
-for i in "${gtkvars[@]}"; do
+for i in $gtkvars; do
 	value="$(eval echo \$`echo gtk-$i | sed 's/-/_/g'`)"
 	echo "gtk-$i=\"$value\"" >> ~/.gtkrc-2.0
 done
