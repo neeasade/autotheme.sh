@@ -8,25 +8,25 @@
 # with inverted active selection colors.
 
 # relevant to this dir:
-cd $(dirname $0)
+cd "$(dirname $0)"
 
 xres=$(mktemp)
 echo "Dumping xresources to: $xres"
 
 # Use urnn to get colors in xres format
-urnn colors "$1" > $xres
+urnn colors "$1" > "$xres"
 
 # eval the colors as variables
-eval $(cat $xres | sed 's/*//;s/:/=/;s/ #//;s/ //g')
+eval $(sed 's/*//;s/:/=/;s/ #//;s/ //g' <<< "$xres")
 
 # subtle or invert?
 if [ "$#" -gt 1 ]; then
-	sel_bg=$foreground
-	sel_fg=$background
+	sel_bg="$foreground"
+	sel_fg="$background"
 	icon_color=$(colort -c "$background" && colort 25 "$background" || colort -25 "$background")
 else
 	sel_bg=$(colort -c "$background" && colort 25 "$background" || colort -25 "$background")
-	sel_fg=$foreground
+	sel_fg="$foreground"
 	icon_color="$(colort -c "$background" && colort -l 80 "$background" || colort -l -80 "$background")"
 fi
 
@@ -61,10 +61,10 @@ rm ~/.gtkrc-2.0
 # set gtk and icon themes
 gtk_theme_name=oomox-$(basename $oomoxconf)
 gtk_icon_theme_name=acyl
-gtkvars="theme-name icon-theme-name font-name cursor-theme-name cursor-theme-size toolbar-style toolbar-icon-size button-images menu-images enable-event-sounds enable-input-feedback-sounds xft-antialias xft-hinting xft-hintstyle xft-rgba"
+gtkvars=(theme-name icon-theme-name font-name cursor-theme-name cursor-theme-size toolbar-style toolbar-icon-size button-images menu-images enable-event-sounds enable-input-feedback-sounds xft-antialias xft-hinting xft-hintstyle xft-rgba)
 
 # write gtkrc
-for i in $gtkvars; do
+for i in "${gtkvars[@]}"; do
 	value="$(eval echo \$`echo gtk-$i | sed 's/-/_/g'`)"
 	echo "gtk-$i=\"$value\"" >> ~/.gtkrc-2.0
 done
@@ -73,7 +73,7 @@ done
 gtkrc-reload
 
 # load xresources
-xrdb merge $xres
+xrdb merge "$xres"
 
 # silent failure if they don't have feh.
 # todo: detect if image is small and tile if so
